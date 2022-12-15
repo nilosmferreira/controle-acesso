@@ -21,6 +21,7 @@
     "paths": {
       "@app/*": ["./src/application/*"],
       "@infra/*": ["./src/infra/*"],
+      "@helpers/*": ["./src/helpers/*"],
       "@test/*": ["./test/*"]
     }
   }
