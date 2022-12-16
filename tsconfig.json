@@ -24,7 +24,8 @@
       "@app/*": ["./src/application/*"],
       "@infra/*": ["./src/infra/*"],
       "@helpers/*": ["./src/helpers/*"],
-      "@test/*": ["./test/*"]
+      "@test/*": ["./test/*"],
+      "@errors/*": ["./src/application/use-cases/errors/*"]
     }
   }
 }
