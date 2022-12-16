@@ -1,5 +1,5 @@
 import { InMemoryPermissionsRepository } from '@test/repositories/in-memory-permissions-repository';
-import { PermissionNameUnique } from '../errors/permission-name-unique';
+import { FieldUnique } from '../errors/field-unique';
 import { CreatePermission } from './create-permission';
 
 describe('Create Permission', () => {
@@ -29,6 +29,6 @@ describe('Create Permission', () => {
         description: 'description-fake',
         name: 'name-fake',
       });
-    }).rejects.toThrow(PermissionNameUnique);
+    }).rejects.toThrow(FieldUnique);
   });
 });

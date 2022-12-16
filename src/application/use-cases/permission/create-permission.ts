@@ -1,6 +1,6 @@
 import { Permission } from '@app/entities/permission/permission';
 import { PermissionsRepository } from '@app/repositories/permissions-repository';
-import { PermissionNameUnique } from '../errors/permission-name-unique';
+import { FieldUnique } from '../errors/field-unique';
 
 interface CreatePermissionRequest {
   name: string;
@@ -24,7 +24,7 @@ export class CreatePermission {
     );
 
     if (permissionAlreadyExists) {
-      throw new PermissionNameUnique();
+      throw new FieldUnique('Permissão');
     }
     const permission = new Permission({
       name,
