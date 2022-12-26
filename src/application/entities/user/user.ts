@@ -39,6 +39,12 @@ export class User {
   public set userName(value: Username) {
     this.data.userName = value;
   }
+  public get email(): Email {
+    return this.data.email;
+  }
+  public set email(value: Email) {
+    this.data.email = value;
+  }
   public get password(): Password {
     return this.data.password;
   }
