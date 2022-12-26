@@ -11,4 +11,8 @@ describe('Password', () => {
       return new Password('aaaa');
     }).toThrow(NotComplexPassword);
   });
+  it('should be able create a hash password', () => {
+    const password = new Password('P@ssword4');
+    expect(password.hash).toEqual(expect.not.stringMatching(password.value));
+  });
 });
