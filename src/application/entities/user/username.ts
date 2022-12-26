@@ -12,4 +12,7 @@ export class Username {
     }
     this.username = username;
   }
+  public get value(): string {
+    return this.username;
+  }
 }
