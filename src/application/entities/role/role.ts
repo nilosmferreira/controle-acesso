@@ -11,9 +11,16 @@ export class Role {
   private _id: string;
   private data: RoleData;
 
-  constructor(data: Replace<RoleData, { createdAt?: Date }>, id?: string) {
+  constructor(
+    data: Replace<RoleData, { createdAt?: Date; updatedAt?: Date | null }>,
+    id?: string,
+  ) {
     this._id = id ?? randomUUID();
-    this.data = { ...data, createdAt: data.createdAt ?? new Date() };
+    this.data = {
+      ...data,
+      createdAt: data.createdAt ?? new Date(),
+      updatedAt: data.updatedAt ?? null,
+    };
   }
 
   public get id() {
