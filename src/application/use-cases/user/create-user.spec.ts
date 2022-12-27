@@ -18,9 +18,9 @@ describe('Create User', () => {
   it('should be able create an user', async () => {
     const user = await createUser.execute({
       email: 'joedoe@joedoe.com',
-      name: 'Joe Doe',
+      firstName: 'Joe',
+      lastName: 'Doe',
       password: 'P@sswor4',
-      role: role.id,
       username: 'joedoe',
     });
     expect(user).toBeTruthy();
@@ -29,9 +29,9 @@ describe('Create User', () => {
     expect(() => {
       return createUser.execute({
         email: 'joedoe@joedoe.com',
-        name: 'Joe Doe',
+        firstName: 'Joe',
+        lastName: 'Doe',
         password: 'P@sswor4',
-        role: 'role-id-random',
         username: 'joedoe',
       });
     }).rejects.toThrow(NotFound);

@@ -5,11 +5,11 @@ import { Username } from './username';
 import { Email } from './email';
 
 export interface UserData {
-  name: string;
+  firstName: string;
+  lastName: string;
   userName: Username;
   email: Email;
   password: Password;
-  roleId: string;
   createdAt: Date;
   updatedAt?: Date | null;
   deletedAt?: Date | null;
@@ -27,11 +27,17 @@ export class User {
     return this._id;
   }
 
-  public get name(): string {
-    return this.data.name;
+  public get firstName(): string {
+    return this.data.firstName;
   }
-  public set name(value: string) {
-    this.data.name = value;
+  public set firstName(value: string) {
+    this.data.firstName = value;
+  }
+  public get lastName(): string {
+    return this.data.lastName;
+  }
+  public set lastName(value: string) {
+    this.data.lastName = value;
   }
   public get userName(): Username {
     return this.data.userName;

@@ -8,11 +8,11 @@ import { FieldUnique } from '../errors/field-unique';
 import { NotFound } from '../errors/not-found';
 
 interface CreateUserRequest {
-  name: string;
+  firstName: string;
+  lastName: string;
   username: string;
   password: string;
   email: string;
-  role: string;
 }
 
 interface CreateUserResponse {
@@ -26,30 +26,30 @@ export class CreateUser {
   ) {}
 
   async execute(request: CreateUserRequest): Promise<CreateUserResponse> {
-    const { name, username, password, email, role } = request;
+    const { firstName, lastName, username, password, email } = request;
 
     const userUsernameAlreadyExist = await this.usersRepository.findByUsername(
       username,
     );
 
     if (userUsernameAlreadyExist) {
-      throw new FieldUnique('Perfil');
+      throw new FieldUnique('login');
     }
 
     const userEmailAlreadyExist = await this.usersRepository.findByEmail(email);
     if (userEmailAlreadyExist) {
       throw new FieldUnique('e-Mail');
     }
-    const roleAlreadyExist = await this.rolesRepository.findById(role);
-    if (!roleAlreadyExist) {
-      throw new NotFound('Perfil');
-    }
+    // const roleAlreadyExist = await this.rolesRepository.findById(role);
+    // if (!roleAlreadyExist) {
+    //   throw new NotFound('Perfil');
+    // }
 
     const user = new User({
       email: new Email(email),
-      name,
+      firstName,
+      lastName,
       password: new Password(password),
-      roleId: role,
       userName: new Username(username),
     });
     await this.usersRepository.create(user);
