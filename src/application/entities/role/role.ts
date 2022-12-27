@@ -5,7 +5,7 @@ export interface RoleData {
   name: string;
   description: string;
   createdAt: Date;
-  updatedAt?: Date | null;
+  updatedAt: Date | null;
 }
 export class Role {
   private _id: string;
@@ -36,7 +36,7 @@ export class Role {
   public get createdAt(): Date {
     return this.data.createdAt;
   }
-  public get updatedAt(): Date | null | undefined {
+  public get updatedAt(): Date | null {
     return this.data.updatedAt;
   }
   public update() {
