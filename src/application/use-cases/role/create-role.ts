@@ -1,5 +1,6 @@
 import { Role } from '@app/entities/role/role';
 import { RolesRepository } from '@app/repositories/roles-repository';
+import { Injectable } from '@nestjs/common';
 import { FieldUnique } from '../errors/field-unique';
 
 interface CreateRoleRequest {
@@ -7,12 +8,12 @@ interface CreateRoleRequest {
   description: string;
 }
 
-interface CreateRoleResponse {
+export interface CreateRoleResponse {
   role: Role;
 }
-
+@Injectable()
 export class CreateRole {
-  constructor(private readonly rolesRepository: RolesRepository) {}
+  constructor(private rolesRepository: RolesRepository) {}
 
   async execute(request: CreateRoleRequest): Promise<CreateRoleResponse> {
     const { name, description } = request;
@@ -20,7 +21,7 @@ export class CreateRole {
     const roleAlreadyExists = await this.rolesRepository.findByName(name);
 
     if (roleAlreadyExists) {
-      throw new FieldUnique('Perfil');
+      throw new FieldUnique('nome');
     }
     const role = new Role({
       name,
